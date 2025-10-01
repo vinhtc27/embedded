@@ -1,12 +1,16 @@
 [package]
-edition      = "2021"
-name         = "embedded"
+edition = "2021"
+name = "embedded"
 rust-version = "1.86"
-version      = "0.1.0"
+version = "0.1.0"
 
 [[bin]]
-name = "embedded"
-path = "./src/bin/main.rs"
+name = "hello_world"
+path = "./src/bin/hello_world.rs"
+
+[[bin]]
+name = "blinky_rgb"
+path = "./src/bin/blinky_rgb.rs"
 
 [dependencies]
 defmt = "1.0.1"
@@ -25,6 +29,8 @@ esp-backtrace = { version = "0.17.0", features = [
   "panic-handler",
 ] }
 esp-println = { version = "0.15.0", features = ["defmt-espflash", "esp32c6"] }
+smart-leds = "0.4.0"
+esp-hal-smartled = "0.16.0"
 
 
 [profile.dev]
@@ -33,10 +39,10 @@ esp-println = { version = "0.15.0", features = ["defmt-espflash", "esp32c6"] }
 opt-level = "s"
 
 [profile.release]
-codegen-units    = 1     # LLVM can perform better optimizations using a single thread
-debug            = 2
+codegen-units = 1        # LLVM can perform better optimizations using a single thread
+debug = 2
 debug-assertions = false
-incremental      = false
-lto              = 'fat'
-opt-level        = 's'
-overflow-checks  = false
+incremental = false
+lto = 'fat'
+opt-level = 's'
+overflow-checks = false
